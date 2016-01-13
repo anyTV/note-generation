@@ -1,10 +1,10 @@
 'use strict';
 const moment = require('moment');
 
-exports.index = (req, res, next) => {
+exports.index = (req, res) => {
 
     function start () {
-        send_response()
+        send_response();
     }
 
     function send_response () {
