@@ -64,9 +64,9 @@
                         <label>Earnings for the Month</label>
                         <select class="listen-change" name="date">
                             <option value="" disabled selected>Earnings for the Month</option>
-                            <option value="2013-01">2013-11</option>
-                            <option value="2013-12">2013-12</option>
-                            <option value="2014-01">2014-01</option>
+                            <% for(var i=0; i<dates.length; i++) {%>
+                            <option value="dates[i]"><%= dates[i] %></option>
+                            <% } %>
                         </select>
                     </div>
                 </div>
