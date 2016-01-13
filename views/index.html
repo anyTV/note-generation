@@ -65,7 +65,7 @@
                         <select class="listen-change" name="date">
                             <option value="" disabled selected>Earnings for the Month</option>
                             <% for(var i=0; i<dates.length; i++) {%>
-                            <option value="dates[i]"><%= dates[i] %></option>
+                            <option value="<%= dates[i] %>"><%= dates[i] %></option>
                             <% } %>
                         </select>
                     </div>
@@ -173,6 +173,7 @@
   <script>
     var months = [
         'Jan',
+        'Feb',
         'Mar',
         'Apr',
         'May',
