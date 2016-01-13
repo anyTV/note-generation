@@ -1,0 +1,26 @@
+{
+  "name": "earnings-summary-report",
+  "description": "REST API boilerplate",
+  "main": "server.js",
+  "authors": [
+    "any.TV"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "freedom"
+  ],
+  "homepage": "https://github.com/anyTV/earnings-summary-reports",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Materialize": "materialize#~0.97.5",
+    "jquery": "~2.2.0"
+  }
+}

@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Error in signing in</title>
+		<style>
+			#header {
+				font-family: 'Helvetica';
+				color: #333;
+			}
+		</style>
+	</head>
+	<body>
+		<br /><br />
+		<h4 id="header">
+			<%= typeof message !== 'undefined' ? message : 'Access Forbidden' %>
+			<br />
+			This page will automatically redirect after 5 seconds.
+		</h4>
+		<script>
+			setTimeout(function () {
+				location.href = '/';
+			}, 5000);
+		</script>
+	</body>
+</html>

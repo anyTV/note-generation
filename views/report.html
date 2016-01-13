@@ -1,0 +1,355 @@
+<% layout('layout/main') -%>
+<% stylesheet('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css') -%>
+
+<style type="text/css">
+
+</style>
+
+<div class="main blue-grey darken-2">
+    <div class="container">
+        <h4 class="white-text">Earnings Report</h4>
+        <label>Input the report ID or Choose the year and month</label>
+        <div class="clearfix">
+            <div class="card-panel">
+                <div class="row no-margin bottom">
+                    <div class="input-field col s12 m5">
+                        <input type="text" placeholder="Report ID">
+                    </div>
+                    <div class="input-field col s12 m1 center">
+                        <span class="or">Or</span>
+                    </div>
+                    <div class="input-field col s12 m2">
+                        <select>
+                            <option value="" disabled selected>Year</option>
+                            <option value="">Example 1</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s12 m2">
+                        <select>
+                            <option value="" disabled selected>Month</option>
+                            <option value="">Example 1</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s12 m2">
+                        <a class="waves-effect waves-light btn orange"><i class="material-icons left">search</i>Search</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="">
+        <div class="row">
+            <div class="col s12 blue-grey darken-4">
+                <div class="container">
+                    <ul class="tabs blue-grey darken-4 white-text">
+                        <li class="tab col s3"><a class="active" href="#closed">Closed Channels</a></li>
+                        <li class="tab col s3"><a href="#wired">Wired Accounts</a></li>
+                        <li class="tab col s3"><a href="#spot">Spot Checking</a></li>
+                        <li class="tab col s3"><a href="#abnormal">Abnormal CPM</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- START CLOSED -->
+            <div id="closed" class="col s12">
+                <div class="container">
+                    <div class="card-panel no-padding">
+                        <table class="striped">
+                            <thead>
+                                <tr class="border-bottom">
+                                    <td colspan="8">
+                                        <span class="grey-text text-grey-lighten-1 header-text">
+                                            CLOSED CHANNELS
+                                        </span>
+                                        <span class="header-text">
+                                            (100)
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="grey-text smaller-text">
+                                    <td> </td>
+                                    <td> Channel ID </td>
+                                    <td> Views </td>
+                                    <td> Subs </td>
+                                    <td> <a href="#" class="link-gray"> <i class="on-hover material-icons tiny">arrow_downward</i>Earnings </a> </td>
+                                    <td> Date Joined </td>
+                                    <td> Date Closed </td>
+                                    <td> User ID </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <img src="http://placehold.it/25x25"> </td>
+                                    <td> <a href="#"> UCRANDOM1234 </a> </td>
+                                    <td> 123 </td>
+                                    <td> 94 </td>
+                                    <td> $0.12 </td>
+                                    <td> Jun 2015 </td>
+                                    <td> August 2015 </td>
+                                    <td> <a href="#"> 1000032 </a> </td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="smaller-text">
+                                <tr class="border-top">
+                                    <td class="right-align white" colspan="8">
+                                        <span class="align-middle">
+                                        Rows per page
+                                        </span>
+                                        <select class="inline">
+                                            <option value="20"> 20 </option>
+                                            <option value="30"> 30 </option>
+                                            <option value="40"> 40 </option>
+                                        </select>
+                                        <span class="align-middle">
+                                        1-20 of 100
+                                        </span>
+                                        <a class="link-black chevs" href="#">
+                                            <i class="material-icons text-black">chevron_left</i>
+                                        </a>
+                                        <a class="link-black chevs" href="#">
+                                            <i class="material-icons text-black">chevron_right</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END CLOSED -->
+
+            <!-- START WIRED -->
+            <div id="wired" class="col s12">
+                <div class="container">
+                    <div class="card-panel no-padding">
+                        <table class="striped">
+                            <thead>
+                                <tr class="border-bottom">
+                                    <td colspan="8">
+                                        <span class="grey-text text-grey-lighten-1 header-text">
+                                            WIRED ACCOUNTS
+                                        </span>
+                                        <span class="header-text">
+                                            (100)
+                                        </span>
+
+                                        <div class="right">
+                                            <button class="btn green darken-2 smaller-text">
+                                                MANAGE GOOGLE SPREADSHEET
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="grey-text smaller-text">
+                                    <td> User ID </td>
+                                    <td> Name </td>
+                                    <td> <a href="#" class="link-gray"> <i class="on-hover material-icons tiny">arrow_downward</i>Reason</a></td>
+                                    <td> Wired Account Information </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <a href="#"> UCRANDOM1234 </a> </td>
+                                    <td> UserOne </td>
+                                    <td> Kasi gusto nila </td>
+                                    <td> Account # </td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="smaller-text">
+                                <tr class="border-top">
+                                    <td class="right-align white" colspan="8">
+                                        <span class="align-middle">
+                                        Rows per page
+                                        </span>
+                                        <select class="inline">
+                                            <option value="20"> 20 </option>
+                                            <option value="30"> 30 </option>
+                                            <option value="40"> 40 </option>
+                                        </select>
+                                        <span class="align-middle">
+                                        1-20 of 100
+                                        </span>
+                                        <a class="link-black chevs" href="#">
+                                            <i class="material-icons text-black">chevron_left</i>
+                                        </a>
+                                        <a class="link-black chevs" href="#">
+                                            <i class="material-icons text-black">chevron_right</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END WIRED -->
+
+            <!-- START SPOT -->
+            <div id="spot" class="col s12">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12 m4">
+                            <select>
+                                <option selected>Earnings Source</option>
+                                <option>Ad Rev</option>
+                            </select>
+                        </div>
+                        <div class="col s12 m8">
+                            <div class="right">
+                                <div class="switch-custom">
+                                    <div class="row">
+                                        <input id="rdio-earnings" type="radio" name="sort-spot" value="earning" checked><!--
+                                        --><label for="rdio-earnings" class="white-text">
+                                            Earnings ordered by amount
+                                        </label><!--
+                                        --><input id="rdio-random" type="radio" name="sort-spot" value="random"><!--
+                                        --><label for="rdio-random" class="white-text">
+                                            Random User
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-panel no-padding">
+                        <table class="striped">
+                            <thead>
+                                <tr class="border-bottom">
+                                    <td colspan="8">
+                                        <span class="grey-text text-grey-lighten-1 header-text">
+                                            RANDOM USERS
+                                        </span>
+                                        <span class="header-text">
+                                            (100)
+                                        </span>
+
+                                        <div class="right">
+                                            <button class="btn orange smaller-text">
+                                                RANDOMIZE
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="grey-text smaller-text">
+                                    <td> User ID </td>
+                                    <td> Name </td>
+                                    <td> <a href="#" class="link-gray"> <i class="on-hover material-icons tiny">arrow_downward</i>Earnings </a> </td>
+                                    <td> Category </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <a href="#"> UCRANDOM1234 </a> </td>
+                                    <td> Pangalan </td>
+                                    <td> $0.12 </td>
+                                    <td> Category </td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="smaller-text">
+                                <tr class="border-top">
+                                    <td class="right-align white" colspan="8">
+                                        <span class="align-middle">
+                                        Rows per page
+                                        </span>
+                                        <select class="inline">
+                                            <option value="20"> 20 </option>
+                                            <option value="30"> 30 </option>
+                                            <option value="40"> 40 </option>
+                                        </select>
+                                        <span class="align-middle">
+                                        1-20 of 100
+                                        </span>
+                                        <a class="link-black chevs" href="#">
+                                            <i class="material-icons text-black">chevron_left</i>
+                                        </a>
+                                        <a class="link-black chevs" href="#">
+                                            <i class="material-icons text-black">chevron_right</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END SPOT -->
+
+
+            <!-- START ABNORMAL -->
+            <div id="abnormal" class="col s12">
+                <div class="container">
+                    <div class="card-panel no-padding">
+                        <table class="striped">
+                            <thead>
+                                <tr class="border-bottom">
+                                    <td colspan="8">
+                                        <span class="grey-text text-grey-lighten-1 header-text">
+                                            ABNORMAL CPM
+                                        </span>
+                                        <span class="header-text">
+                                            (100)
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="grey-text smaller-text">
+                                    <td> User ID </td>
+                                    <td> Name </td>
+                                    <td> <a href="#" class="link-gray"> <i class="on-hover material-icons tiny">arrow_downward</i>Earnings </a> </td>
+                                    <td> Channel ID </td>
+                                    <td> Views </td>
+                                    <td> Subs </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <a href="#"> UCRANDOM1234 </a> </td>
+                                    <td> Pangalan </td>
+                                    <td> $0.12 </td>
+                                    <td> <a href="#"> 1000032 </a> </td>
+                                    <td> 953</td>
+                                    <td> 123 </td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="smaller-text">
+                                <tr class="border-top">
+                                    <td class="right-align white" colspan="8">
+                                        <span class="align-middle">
+                                        Rows per page
+                                        </span>
+                                        <select class="inline">
+                                            <option value="20"> 20 </option>
+                                            <option value="30"> 30 </option>
+                                            <option value="40"> 40 </option>
+                                        </select>
+                                        <span class="align-middle">
+                                        1-20 of 100
+                                        </span>
+                                        <a class="link-black chevs" href="#">
+                                            <i class="material-icons text-black">chevron_left</i>
+                                        </a>
+                                        <a class="link-black chevs" href="#">
+                                            <i class="material-icons text-black">chevron_right</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END ABNORMAL -->
+</div>
+
+
+<% block('scripts', `
+  <script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+  </script>
+`) -%>
+

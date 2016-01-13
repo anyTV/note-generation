@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/styles/styles.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/bower_components/materialize/dist/css/materialize.min.css">
+
+        <%- stylesheets %>
+        <script src="https://cdn.localizejs.com/localize.js"></script>
+    </head>
+    <body class="<%= typeof _body !== 'undefined' ? _body.class : '' %>">
+
+        <%- body -%>
+
+        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/bower_components/materialize/dist/js/materialize.min.js"></script>
+
+        <%- scripts %>
+    </body>
+</html>
