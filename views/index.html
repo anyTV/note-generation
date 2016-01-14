@@ -257,10 +257,12 @@
         var data = merge_data(email, user_id, amount);
 
         if (!source || !data.length || !date) {
+            render_result([]);
             return;
         }
 
         if (source === 'youtube' && !category) {
+            render_result([]);
             return;
         }
 
