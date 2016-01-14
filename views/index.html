@@ -34,6 +34,8 @@
                             <option value="youtube">youtube</option>
                             <option value="hitbox">hitbox</option>
                             <option value="dailymotion">dailymotion</option>
+                            <option value="any.tv">any.tv</option>
+                            <option value="youtube_red">youtube_red</option>
                             <option value="others">others</option>
                         </select>
                     </div>
@@ -63,9 +65,10 @@
                     <div class="col s4 input-field no-transition">
                         <label>Earnings for the Month</label>
                         <select class="listen-change" name="date">
-                            <option value="" disabled selected>Earnings for the Month</option>
                             <% for(var i=0; i<dates.length; i++) {%>
-                            <option value="<%= dates[i] %>"><%= dates[i] %></option>
+                            <option value="<%= dates[i].value %>"<%= dates[i].selected ? ' selected' : ''%>>
+                                <%= dates[i].value %>
+                            </option>
                             <% } %>
                         </select>
                     </div>
@@ -92,10 +95,10 @@
                             <input class="listen-change" type="text" name="email[]" placeholder="Email">
                         </div>
                         <div class="col s4 input-field">
-                            <input class="listen-change" type="text" name="user_id[]" placeholder="User ID">
+                            <input class="listen-change number-only" type="text" name="user_id[]" placeholder="User ID">
                         </div>
                         <div class="col s4 input-field">
-                            <input class="listen-change" type="text" name="amount[]" placeholder="Amount">
+                            <input class="listen-change positive-float-only" type="text" name="amount[]" placeholder="Amount">
                             <div class="push-right">
                                 <button class="btn btn-clear link-black add-input-btn" type="button"><i class="material-icons">add</i></button>
                             </div>
@@ -158,10 +161,10 @@
             <input class="listen-change" type="text" name="email[]" placeholder="Email">
         </div>
         <div class="col s4 input-field">
-            <input class="listen-change" type="text" name="user_id[]" placeholder="User ID">
+            <input class="listen-change number-only" type="text" name="user_id[]" placeholder="User ID">
         </div>
         <div class="col s4 input-field">
-            <input class="listen-change" type="text" name="amount[]" placeholder="Amount">
+            <input class="listen-change positive-float-only" type="text" name="amount[]" placeholder="Amount">
             <div class="push-right">
                 <button class="btn btn-clear link-black add-input-btn" type="button"><i class="material-icons">add</i></button>
             </div>
@@ -228,13 +231,13 @@
         var date_formatted = months[parseInt(date.substr(5, 2)) - 1] + ', ' + date.substr(0,4);
 
         return note.replace('$source_formatted', source_formatted)
-            .replace('$type', type)
-            .replace('$type', type)
+            .replace('$type', type || '')
+            .replace('$type', type || 'None')
             .replace('$date_formatted', date_formatted)
             .replace('$date', date)
             .replace('$user_id', data.user_id)
             .replace('$source', source)
-            .replace('$category', category);
+            .replace('$category', category || 'None');
     }
 
     $('#reset-btn').on('click', function () {
@@ -253,17 +256,25 @@
 
         var data = merge_data(email, user_id, amount);
 
-        if (!data.length || !source || !category || !type || !date) {
+        if (!source || !data.length || !date) {
             return;
         }
+
+        if (source === 'youtube' && !category) {
+            return;
+        }
+
 
         var notes = create_notes(source, category, type, date, data);
 
         render_result(notes);
     });
 
+    var clipboard = new Clipboard('.btn');
+
     function render_result(notes) {
         var container = $('#result-container');
+        clipboard.destroy();
         container.html('');
         var tpl = $('#tplResultItem').html();
         if (notes.length) {
@@ -275,7 +286,7 @@
             }
 
             var item = tpl.replace('$email', note.data.email)
-                .replace('$amount', parseInt(note.data.amount).toLocaleString())
+                .replace('$amount', parseFloat(note.data.amount).toLocaleString(undefined, { minimumFractionDigits: 2 }))
                 .replace('$user_id', note.data.user_id)
                 .replace('$note', note.note)
                 .replace('$note', note.note);
@@ -283,11 +294,60 @@
             container.append(item);
         });
 
-        new Clipboard('.clipboard-copy', {
+        clipboard = new Clipboard('.clipboard-copy', {
             text: function(trigger) {
                 return trigger.innerText;
             }
+        }).on('success', function (e) {
+            Materialize.toast('Copied to clipboard!', 1000);
         });
+    }
+
+    $('.number-only').on('keydown', number_only);
+    $('.positive-float-only').on('keydown', positive_float_only);
+
+
+    function positive_float_only(e) {
+        console.log('123')
+        if (event.shiftKey) {
+            event.preventDefault();
+        }
+
+        if (event.keyCode === 46 || event.keyCode === 8 || event.metaKey || event.ctrlKey || event.keyCode === 9 ||
+                event.keyCode === 190 || event.keyCode === 110) {
+            return;
+        }
+
+        if (event.keyCode < 95) {
+            if (event.keyCode < 48 || event.keyCode > 57) {
+                event.preventDefault();
+            }
+        }
+        else {
+            if (event.keyCode < 96 || event.keyCode > 105) {
+                event.preventDefault();
+            }
+        }
+    }
+
+    function number_only(e) {
+        if (event.shiftKey) {
+            event.preventDefault();
+        }
+
+        if (event.keyCode === 46 || event.keyCode === 8 || event.metaKey || event.ctrlKey || event.keyCode === 9) {
+        } else {
+            if (event.keyCode < 95) {
+                if (event.keyCode < 48 || event.keyCode > 57) {
+                    event.preventDefault();
+                }
+            }
+            else {
+                if (event.keyCode < 96 || event.keyCode > 105) {
+                    event.preventDefault();
+                }
+            }
+        }
     }
 
     $('#input-container').on('click', '.add-input-btn', add_input_box);

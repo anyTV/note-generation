@@ -14,13 +14,17 @@ exports.index = (req, res) => {
     }
 
     function get_dates(from) {
-        let date = moment(from, 'YYYY-MM');
+        let min_date = moment(from, 'YYYY-MM');
         let dates = [];
         let now = moment();
 
-        while(now.diff(date, 'months', true) > 0) {
-            dates.push(date.format('YYYY-MM'));
-            date.add(1, 'month');
+
+        while(min_date.diff(now, 'months', true) <= 0) {
+            dates.push({
+                selected: moment().subtract(2, 'month').format('YYYY-MM') === now.format('YYYY-MM'),
+                value: now.format('YYYY-MM')
+            });
+            now.subtract(1, 'month');
         }
 
         return dates;
