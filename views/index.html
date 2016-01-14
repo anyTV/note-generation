@@ -30,7 +30,7 @@
                     <div class="col s4 input-field no-transition">
                         <label>Source</label>
                         <select class="listen-change" name="source">
-                            <option value="" disabled selected>Earnings Source</option>
+                            <option value="" selected>Earnings Source</option>
                             <option value="youtube">youtube</option>
                             <option value="hitbox">hitbox</option>
                             <option value="dailymotion">dailymotion</option>
@@ -42,7 +42,7 @@
                     <div class="col s4 input-field no-transition">
                         <label>Category</label>
                         <select class="listen-change" name="category">
-                            <option value="" disabled selected>Earnings Category</option>
+                            <option value="" selected>Earnings Category</option>
                             <option value="channel">channel</option>
                             <option value="recruiter">recruiter</option>
                             <option value="network">network</option>
@@ -54,7 +54,7 @@
                     <div class="col s4 input-field no-transition">
                         <label>Type</label>
                         <select class="listen-change" name="type">
-                            <option value="" disabled selected>Earnings Type</option>
+                            <option value="" selected>Earnings Type</option>
                             <option value="catchup">catchup</option>
                             <option value="advance">advance</option>
                         </select>
@@ -224,20 +224,22 @@
     }
 
     function create_note (source, category, type, date, data) {
-        var note = ['Freedom! $source_formatted $type earnings for $date_formatted.',
-            'Month: $date, Your_custom_id: $user_id, Source: $source, Category: $category'].join(' ');
+        var note = ['Freedom! $source_formatted $category $type earnings for $date_formatted.',
+            'Month: $date, Your_custom_id: $user_id, Source: $source $category',
+            '$type'].join(' ');
 
         var source_formatted = source.substr(0,1).toUpperCase() + source.substr(1, source.length);
         var date_formatted = months[parseInt(date.substr(5, 2)) - 1] + ', ' + date.substr(0,4);
 
         return note.replace('$source_formatted', source_formatted)
             .replace('$type', type || '')
-            .replace('$type', type || 'None')
+            .replace('$type', type ? ', Type: ' + type : '')
             .replace('$date_formatted', date_formatted)
             .replace('$date', date)
             .replace('$user_id', data.user_id)
             .replace('$source', source)
-            .replace('$category', category || 'None');
+            .replace('$category', category || '')
+            .replace('$category', category ? ', Category: ' + category : '');
     }
 
     $('#reset-btn').on('click', function () {
@@ -247,6 +249,11 @@
 
     $(document).on('change', '.listen-change', function () {
         var source = $('select[name="source"]').val();
+        if (source !== 'youtube' && source !== 'youtube_red') {
+            $('select[name="category"]').val('');
+            $('select[name="category"]').parent().find('.select-dropdown').val('Earnings Category');
+        }
+
         var category = $('select[name="category"]').val();
         var type = $('select[name="type"]').val();
         var date = $('select[name="date"]').val();
@@ -265,7 +272,6 @@
             render_result([]);
             return;
         }
-
 
         var notes = create_notes(source, category, type, date, data);
 
