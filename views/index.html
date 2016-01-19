@@ -291,6 +291,7 @@
         }
         notes.forEach(function (note) {
             if(!note.data.email || !note.data.user_id || !note.data.amount) {
+                Materialize.toast('Each row should have email, user id, and amount.', 2000);
                 return;
             }
 
