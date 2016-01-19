@@ -246,7 +246,7 @@
         $('#input-container').html('').append($('#tplInputs').html());
     });
 
-    $('.listen-change').on('change', function () {
+    $(document).on('change', '.listen-change', function () {
         var source = $('select[name="source"]').val();
         if (source !== 'youtube' && source !== 'youtube_red') {
             $('select[name="category"]').val('');
@@ -291,7 +291,6 @@
         }
         notes.forEach(function (note) {
             if(!note.data.email || !note.data.user_id || !note.data.amount) {
-                Materialize.toast('Each row should have email, user id, and amount.', 2000);
                 return;
             }
 
