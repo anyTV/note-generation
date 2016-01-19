@@ -224,7 +224,7 @@
     }
 
     function create_note (source, category, type, date, data) {
-        var note = ['Freedom! $source_formatted $category $type earnings for $date_formatted.',
+        var note = ['Freedom $source_formatted $category $type earnings for $date_formatted.',
             'Month: $date, Your_custom_id: $user_id, Source: $source$category$type'].join(' ');
 
         var source_formatted = source.substr(0,1).toUpperCase() + source.substr(1, source.length);
