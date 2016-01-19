@@ -246,7 +246,7 @@
         $('#input-container').html('').append($('#tplInputs').html());
     });
 
-    $(document).on('change', '.listen-change', function () {
+    $('.listen-change').on('change', function () {
         var source = $('select[name="source"]').val();
         if (source !== 'youtube' && source !== 'youtube_red') {
             $('select[name="category"]').val('');
@@ -263,11 +263,13 @@
         var data = merge_data(email, user_id, amount);
 
         if (!source || !data.length || !date) {
+            Materialize.toast('Need to indicate source and Month', 2000);
             render_result([]);
             return;
         }
 
         if (source === 'youtube' && !category) {
+            Materialize.toast('Youtube Earnings Sources requires CATEGORY', 2000);
             render_result([]);
             return;
         }
