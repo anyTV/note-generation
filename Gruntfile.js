@@ -4,8 +4,8 @@
 module.exports = (grunt) => {
 
     grunt.initConfig({
-        jshint: {
-            files: [
+        eslint: {
+            src: [
                 'Gruntfile.js',
                 'server.js',
                 'config/**/*.js',
@@ -16,7 +16,7 @@ module.exports = (grunt) => {
                 'test/**/*.js'
             ],
             options: {
-                jshintrc: '.jshintrc'
+                configFile: '.eslintrc'
             }
         },
 
@@ -40,8 +40,8 @@ module.exports = (grunt) => {
 
         watch: {
           express: {
-            files: ['<%= jshint.files %>'],
-            tasks: ['jshint', 'express'],
+            files: ['<%= eslint.src %>'],
+            tasks: ['eslint', 'express'],
             options: {
                 spawn: false
             }
@@ -49,14 +49,14 @@ module.exports = (grunt) => {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('gruntify-eslint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-mocha-test');
 
-    grunt.registerTask('test', ['jshint', 'mochaTest']);
-    grunt.registerTask('serve', ['express']);
-    grunt.registerTask('test-watch', ['jshint', 'mochaTest', 'watch']);
-    grunt.registerTask('default', ['jshint', 'express', 'watch']);
+    grunt.registerTask('test', ['eslint', 'mochaTest']);
+    grunt.registerTask('serve', ['eslint', 'express']);
+    grunt.registerTask('test-watch', ['eslint', 'mochaTest', 'watch']);
+    grunt.registerTask('default', ['eslint', 'express', 'watch']);
 
 };

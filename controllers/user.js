@@ -29,6 +29,7 @@ exports.get_user = (req, res, next) => {
     function send_response (err, result, args, last_query) {
         if (err) {
             winston.error('Error in selecting users', last_query);
+
             return next(err);
         }
 

@@ -41,6 +41,7 @@ function get_data (sample, source, ref) {
         temp = source.map((a, index) => {
             const ret = validate_primitive_value(sample, 0, source, index, ref + `[${index}]`);
             has_error = ret instanceof Error ? ret : false;
+
             return ret;
         });
 
@@ -50,21 +51,24 @@ function get_data (sample, source, ref) {
     }
 
     for (let prop in sample) {
-        let source_prop;
-        let data;
+        if (sample.hasOwnProperty(prop)) {
+            let source_prop;
+            let data;
 
-        source_prop = prop[0] === '_'
-            ? prop.slice(1)
-            : prop;
+            source_prop = prop[0] === '_'
+                ? prop.slice(1)
 
-        data = validate_primitive_value(sample, prop, source, source_prop, (ref ? ref + '.' : '') + prop);
+                : prop;
 
-        if (data instanceof Error) {
-            return data;
-        }
+            data = validate_primitive_value(sample, prop, source, source_prop, (ref ? ref + '.' : '') + prop);
 
-        if (typeof data !== 'undefined') {
-            final[source_prop] = data;
+            if (data instanceof Error) {
+                return data;
+            }
+
+            if (typeof data !== 'undefined') {
+                final[source_prop] = data;
+            }
         }
     }
 

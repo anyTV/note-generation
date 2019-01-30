@@ -29,6 +29,7 @@ const config = {
 
     use: (env) => {
         _.assign(config, require(__dirname + '/env/' + env));
+
         return config;
     }
 };
